@@ -1,0 +1,16 @@
+<div id="filter_{{ filter_id }}">
+    {{ filtering_model.qbtitle }}.{{ filtering_field }}
+    {{ filtering_type_display|safe }}
+    <input type="hidden" name="model_for_filter_{{ filter_id }}" value="{{ filtering_model_name }}"/>
+    <input type="hidden" name="field_for_filter_{{ filter_id }}" value="{{ filtering_field }}"/>
+    <input type="hidden" name="type_for_filter_{{ filter_id }}" value="{{ filtering_type }}"/>
+    {% if filtering_type == 'IN' %}
+        <button dojoType="dijit.form.Button" onclick="add_a_value_for_filter({{ filter_id }});">+</button>
+        <div id="values_for_filter_{{ filter_id }}" style="display: inline;"><input type="text" name="value_for_filter_{{ filter_id }}[]" size="2"/></div>
+    {% else %}{% if filtering_type_type == 'date' %}
+        <input type="text" dojoType="dijit.form.DateTextBox" name="value_for_filter_{{ filter_id }}"/>
+    {% else %}
+        <input type="text" name="value_for_filter_{{ filter_id }}" size="2"/>
+    {% endif %}{% endif %}
+    <a href="javascript:remove_filter({{filter_id}});"><img src="/qbuilder/media/clear.png" height="18px"/></a>
+</div>

@@ -1,0 +1,73 @@
+{% extends "querybuilder/base.html" %}
+
+{% load list_tags %}
+
+{% block content %}
+    {{ block.super }}
+    {% if alertes %}
+        <h2>Alertes</h2>
+        <table class="liste-alertestat trafiquable" id="alertes-tat">
+        <thead>
+            <tr><th>Type</th><th>Tube</th><th>Evènement prévu</th></tr>
+        </thead>
+        <tbody>
+            {% for alerte in alertes %}
+                <tr>
+                    <td>{% ifequal alerte.type 1 %}Retard de {{ alerte.get_retard_display }}{% endifequal %}</td>
+                    <td>{{ alerte.tube }}</td>
+                    <td>{{ alerte.evenement }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% endif %}
+    {% if indicateurs %}
+        <h2>Indicateurs</h2>
+        <table id="indicateurs-tat" class="align-center">
+            <tbody>
+                {% for row in indicateurs|columnize:colonnes %}
+                    <tr>
+                        {% for indicateur in row %}
+                            <td style="width:{% widthratio 1 colonnes 100 %}%; vertical-align: top;">
+                                {% if indicateur %}
+                                    <div class="indicateur-tat" id="indicateur-tat-{{ indicateur.pk }}">
+                                        <span id="indicateur-tat-title-{{ indicateur.pk }}" class="indicateur-tat-title">{{ indicateur.title }}</span>
+                                        <div class="indicateur-tat-content" id="indicateur-tat-content-{{ indicateur.pk }}" style="width: 100%;">
+                                            <table class="grid-cells" id="resultingDataTable-{{ indicateur.pk }}" style="display: none;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>index</th>
+                                                        {% for key in indicateur.resulting_keys %}
+                                                            <th>{{ key }}</th>
+                                                        {% endfor %}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for data_line in indicateur.all_data %}
+                                                        <tr>
+                                                            <th>{{ forloop.counter0 }}</th>
+                                                            {% for item in data_line %}
+                                                                <td>{{ item }}</td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>                                        
+                                            {{ indicateur.get_content|safe|default:"" }}
+                                        </div>
+                                        <script type="text/javascript">
+                                            {{ indicateur.get_javascript|safe }}
+                                        </script>
+                                    </div>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
+
