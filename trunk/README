@@ -1,0 +1,37 @@
+Introduction
+============
+
+querybuilder is a tool allowing non SQL-speaking users to generate complex queries from an UI. It is useful to extract statistics from any database. It is based on Django, Dojo and SQL Alchemy.
+
+Users select if they want to count elements or display time evolution of something. Then they select which entity is to be queried and can filter, regroup the returned objects. The result can be presented as a data grid, a piechart, a barchart, a linechart, a gauge.
+
+Requirements
+============
+
+You need
+- dojango (tested with a custom build of Dojo 1.4.1)
+    - http://code.google.com/p/dojango/
+- sqlalchemy
+    - http://www.sqlalchemy.org/
+- elixir
+    - http://elixir.ematia.de/
+
+Usage
+=====
+
+Put querybuilder in your django project
+Add querybuilder to INSTALLED_APPS
+Add the path to querybuilder's templates in TEMPLATE_DIRS
+You will certainly need to override some dojango options (see dojango's documentation)
+
+The url patterns included into querybuilder can server stati media but you know you should use a real webserver to serve static media
+
+Configuration
+=============
+
+Modify querybuilder/qbmodels.py to suit reflect the tables in your database the same way you do with django models. See elixir documentation.
+As you can see in the examples, you have to add properties on your entities :
+- qbtitle : the human readable model's name
+- qbforeigns : a hash of the models that can be joined with this one and the 'path' to this model if it is not a direct foreign
+- qbfilters : a list of fields you would like to present to your user in order to filter the objects returned. Each field is associated with a list of filters it is able to use (>, <, =, !=, IN, date_gt, date_lt)
+- qbgroup_by : a list of fields you would like to present to your user in order to regroup the objects returned. Look at examples. TODO : better documentation

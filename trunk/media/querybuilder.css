@@ -1,0 +1,84 @@
+h2, .indicateur-tat-title
+	{
+	background-image: url(/site_media/style_images/deg_entete.jpg);
+	height: 24px;
+	font-size: 14pt;
+	border: 1px solid black;
+	border-bottom: 1px solid #013368;
+	padding-left: 10px;
+	margin-bottom: 1px;
+	}
+
+table.table-statistiques td.avances-sup-80
+    {
+    background-color: green;
+    }
+
+table.table-statistiques td.avances-sup-50
+    {
+    background-color: yellow;
+    }
+
+table.table-statistiques td.avances-sup-50
+    {
+    background-color: orange;
+    }
+
+table.table-statistiques td.retards-sup-80
+    {
+    background-color: red;
+    }
+
+table.liste-evenementstube, table.table-statistiques
+	{
+	border: 1px solid black;
+	border-collapse: separate;
+	border-spacing: 0px;
+	}
+table.liste-evenementstube th, table.table-statistiques th
+	{
+	border-bottom: 1px solid #013368;
+	}
+table.liste-evenementstube td, table.table-statistiques td
+	{
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	}
+table.liste-evenementstube tr.odd, table.table-statistiques tr.odd
+	{
+	background-color:#E3E9F7;
+	}
+table.liste-evenementstube tr.even, table.table-statistiques tr.even
+	{
+	background-color:inherit;
+	}
+
+table.table-statistiques tr.totaux
+	{
+	background-color: #ccd;
+	}
+table.table-statistiques tr.totaux td
+	{
+	border-top: 1px solid #013368;
+	}
+
+/*
+ * indicateurs TAT
+ */
+
+.indicateur-tat
+	{
+	border: 1px solid;
+	}
+.indicateur-tat-content
+	{
+	min-height: 175px;
+	vertical-align: middle;
+	text-align: center;
+	}
+.indicateur-tat-title
+	{
+	display: block;
+	border: none;
+	border-bottom: 1px solid;
+	}

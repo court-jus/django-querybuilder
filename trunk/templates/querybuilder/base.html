@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" Content="text/html; charset=UTF-8">
+        {% include "querybuilder/include_dojango.html" %}
+        <link rel="stylesheet" href="/qbuilder/media/querybuilder.css"/>
+        <style type="text/css">
+            @import "/dojango/dojo-media/release/custom_build_141/dojox/grid/resources/Grid.css";
+            @import "/dojango/dojo-media/release/custom_build_141/dojox/grid/resources/soriaGrid.css";
+            @import "/dojango/dojo-media/release/custom_build_141/dojox/layout/resources/ResizeHandle.css";
+            @import "/dojango/dojo-media/release/custom_build_141/dojox/widget/gauge/_Gauge.css";
+        </style>
+        <script type="text/javascript" src="/qbuilder/media/qbuilder.js"></script>
+        <title>Query Builder</title>
+    </head>
+    <body class="soria">
+
+        <div id="content">
+            {% block content %}
+                <ul class="menu-onglets">
+                <li><a {% ifequal active_tab "accueil" %}class="active-tab" {% endifequal %}href="{% url querybuilder.views.accueil %}">Accueil/Tableau de bord</a></li>
+                <li><a {% ifequal active_tab "qbuilder" %}class="active-tab" {% endifequal %}href="{% url querybuilder.views.qbuilder %}">Query Builder</a></li>
+                </ul>
+            {% endblock %}
+        </div>
+    </body>
+</html>
